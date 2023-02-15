@@ -1,0 +1,28 @@
+version: '3.7'
+services:
+  nest:
+    container_name: nest
+    build:
+      context: .
+      dockerfile: .docker/nest/Dockerfile
+      target: development
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - '3000:3000'
+    command: npm run start:dev
+    env_file:
+      - .env.local
+  # Replica Set (required for Prisma Client)
+  mongo:
+    build: ./.docker/mongo
+    env_file:
+      - .env.local
+    ports:
+      - '27017:27017'
+      - '27018:27018'
+    volumes:
+      - show-server-db:/data/db
+volumes:
+  show-server-db:
