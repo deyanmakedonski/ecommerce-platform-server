@@ -13,8 +13,8 @@ import { UpdateArticleDto } from './dto/update-article.dto';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ArticleEntity } from './entities/article.entity';
 
-@Controller('articles')
-@ApiTags('articles')
+@Controller('api/articles')
+@ApiTags('api/articles')
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
